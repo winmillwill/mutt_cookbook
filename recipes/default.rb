@@ -50,7 +50,9 @@ template "#{home_dir}/.mutt/muttrc" do
   owner for_user
   variables(
     :alternates => node['mutt']['alternates'] || [node['mutt']['account']],
-    :account => node['mutt']['account']
+    :account => node['mutt']['account'],
+    :msmtp_account => node['mutt']['msmtp_account'],
+    :email => node['mutt']['email']
   )
 end
 

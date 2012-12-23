@@ -116,8 +116,8 @@ bind pager R  group-reply
 bind attach <return> view-mailcap
 
 # Send Stuff ------------------------------------------
-set from     = "steve@stevelosh.com"
-set sendmail = "/usr/local/bin/msmtp -a stevelosh"
+set from     = "<%= @email %>"
+set sendmail = "/usr/local/bin/msmtp -a <%= @msmtp_account %>"
 set sendmail_wait = 0
 unset record
 bind compose p postpone-message
