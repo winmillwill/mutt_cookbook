@@ -39,7 +39,7 @@ end
 home_dir = ENV['HOME']
 for_user = ENV['SUDO_USER']
 
-directory "#{home_dir}/.mutt/tmp" do
+directory "#{home_dir}/.mutt/temp" do
   owner for_user
   recursive TRUE
 end
@@ -51,6 +51,7 @@ template "#{home_dir}/.mutt/muttrc" do
   variables(
     :alternates => node['mutt']['alternates'] || [node['mutt']['account']],
     :account => node['mutt']['account'],
+    # TODO: investigate something like a conf.d for mutt config
     :msmtp_account => node['mutt']['msmtp_account'],
     :email => node['mutt']['email']
   )
@@ -58,7 +59,9 @@ end
 
 cookbook_file "#{home_dir}/.mutt/view_attachment.sh" do
   owner for_user
+  mode 0700
 end
+
 cookbook_file "#{home_dir}/.mutt/mailcap" do
   owner for_user
 end
